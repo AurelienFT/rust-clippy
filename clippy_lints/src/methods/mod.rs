@@ -1,3 +1,4 @@
+mod manual_string_char_comparison;
 mod bind_instead_of_map;
 mod bytecount;
 mod bytes_count_to_len;
@@ -4089,6 +4090,31 @@ declare_clippy_lint! {
     "is_empty() called on strings known at compile time"
 }
 
+declare_clippy_lint! {
+    /// ### What it does
+    /// Checks for manual char comparaison using `Pattern`.
+    ///
+    /// ### Why is this bad?
+    /// The `Pattern` can be an array of `char` and the performance are similiar 
+    /// except if the `Pattern` is a single char, in this case not making manual
+    /// comparaison increases perfomances
+    ///
+    /// ### Example
+    /// ```no_run
+    /// let sentence = "Hello, World!";
+    /// sentence.trim_end_matches(|c: char| c == '.' || c == '!' || c == '?');
+    /// ```
+    /// Use instead:
+    /// ```no_run
+    /// let sentence = "Hello, World!";
+    /// sentence.trim_end_matches(['.', '!', '?']);
+    /// ```
+    #[clippy::version = "1.80.0"]
+    pub MANUAL_STRING_CHAR_COMPARISON,
+    style,
+    "making a manual char comparaison in a `Pattern` where `char` can be directly used"
+}
+
 pub struct Methods {
     avoid_breaking_exported_api: bool,
     msrv: Msrv,
@@ -4254,6 +4280,7 @@ impl_lint_pass!(Methods => [
     UNNECESSARY_RESULT_MAP_OR_ELSE,
     MANUAL_C_STR_LITERALS,
     UNNECESSARY_GET_THEN_CHECK,
+    MANUAL_STRING_CHAR_COMPARISON,
 ]);
 
 /// Extracts a method call name, args, and `Span` of the method name.
@@ -4816,6 +4843,9 @@ impl Methods {
                 ("push", [arg]) => {
                     path_buf_push_overwrite::check(cx, expr, arg);
                 },
+                ("trim_end_matches", [arg]) => {
+                    manual_string_char_comparison::check(cx, expr);
+                }
                 ("read_to_end", [_]) => {
                     verbose_file_reads::check(cx, expr, recv, verbose_file_reads::READ_TO_END_MSG);
                 },

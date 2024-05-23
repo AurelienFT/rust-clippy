@@ -409,6 +409,7 @@ pub(crate) static LINTS: &[&crate::LintInfo] = &[
     crate::methods::MANUAL_OK_OR_INFO,
     crate::methods::MANUAL_SATURATING_ARITHMETIC_INFO,
     crate::methods::MANUAL_SPLIT_ONCE_INFO,
+    crate::methods::MANUAL_STRING_CHAR_COMPARISON_INFO,
     crate::methods::MANUAL_STR_REPEAT_INFO,
     crate::methods::MANUAL_TRY_FOLD_INFO,
     crate::methods::MAP_CLONE_INFO,

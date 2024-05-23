@@ -1,0 +1,11 @@
+error: This manual char comparaison can be written more succinctly
+  --> tests/ui/manual_string_char_comparison.rs:6:5
+   |
+LL |     sentence.trim_end_matches(|c: char| c == '.' || c == '!' || c == '?');
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try
+   |
+   = note: `-D clippy::manual-string-char-comparison` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::manual_string_char_comparison)]`
+
+error: aborting due to 1 previous error
+

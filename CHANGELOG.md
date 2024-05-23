@@ -5482,6 +5482,7 @@ Released 2018-09-13
 [`manual_slice_size_calculation`]: https://rust-lang.github.io/rust-clippy/master/index.html#manual_slice_size_calculation
 [`manual_split_once`]: https://rust-lang.github.io/rust-clippy/master/index.html#manual_split_once
 [`manual_str_repeat`]: https://rust-lang.github.io/rust-clippy/master/index.html#manual_str_repeat
+[`manual_string_char_comparison`]: https://rust-lang.github.io/rust-clippy/master/index.html#manual_string_char_comparison
 [`manual_string_new`]: https://rust-lang.github.io/rust-clippy/master/index.html#manual_string_new
 [`manual_strip`]: https://rust-lang.github.io/rust-clippy/master/index.html#manual_strip
 [`manual_swap`]: https://rust-lang.github.io/rust-clippy/master/index.html#manual_swap
